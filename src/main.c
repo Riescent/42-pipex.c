@@ -6,7 +6,7 @@
 /*   By: vfries <vfries@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 15:47:32 by vfries            #+#    #+#             */
-/*   Updated: 2023/02/04 14:52:34 by vfries           ###   ########lyon.fr   */
+/*   Updated: 2023/02/04 15:09:19 by vfries           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,6 @@
 #include "error.h"
 #include "dup_input_output.h"
 #include "execution.h"
-
-///
-// static void	print_token(t_list *tokens);///
-///
 
 static int	check_input(int argc, char **argv, bool *is_here_doc);
 
@@ -63,24 +59,3 @@ static int	check_input(int argc, char **argv, bool *is_here_doc)
 	}
 	return (0);
 }
-
-
-
-// static void	print_token(t_list *tokens)
-// {
-// 	int	i = 0;
-// 	for (; tokens != NULL; tokens = tokens->next)
-// 	{
-// 		ft_printf("CMD%d path -> %s\n", i, ((t_token *)tokens->content)->path);
-// 		if ((t_token *)tokens->content)
-// 		{
-// 			ft_printf("CMD%d args -> {", i);
-// 			for (int j = 0; ((t_token *)tokens->content)->args[j]; j++)
-// 				ft_printf("%s, ", ((t_token *)tokens->content)->args[j]);
-// 			ft_printf("(null)}\n");
-// 		}
-// 		else
-// 			ft_printf("CMD%d args -> NULL", i);
-// 		i++;
-// 	}
-// }

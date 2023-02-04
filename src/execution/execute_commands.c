@@ -6,14 +6,13 @@
 /*   By: vfries <vfries@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 13:14:48 by vfries            #+#    #+#             */
-/*   Updated: 2023/02/04 14:50:18 by vfries           ###   ########lyon.fr   */
+/*   Updated: 2023/02/04 15:07:56 by vfries           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tokens.h"
 #include "error.h"
 #include "dup_input_output.h"
-#include <sys/wait.h>
 #include <stdlib.h>
 
 static int		execute_pipes(t_list *tokens, char *out_file, char **envp,

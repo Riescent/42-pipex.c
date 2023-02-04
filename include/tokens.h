@@ -6,7 +6,7 @@
 /*   By: vfries <vfries@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 15:52:41 by vfries            #+#    #+#             */
-/*   Updated: 2023/02/04 13:39:32 by vfries           ###   ########lyon.fr   */
+/*   Updated: 2023/02/04 15:07:09 by vfries           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define TOKENS_H
 
 # include "libft.h"
-# include "stdbool.h"
+# include <stdbool.h>
 
 typedef struct s_token
 {
