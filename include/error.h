@@ -1,33 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tokens.h                                           :+:      :+:    :+:   */
+/*   error.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vfries <vfries@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/02 15:52:41 by vfries            #+#    #+#             */
-/*   Updated: 2023/02/04 13:39:32 by vfries           ###   ########lyon.fr   */
+/*   Created: 2023/01/27 17:06:00 by tdameros          #+#    #+#             */
+/*   Updated: 2023/02/04 14:23:59 by vfries           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TOKENS_H
-# define TOKENS_H
+#ifndef ERROR_H
+# define ERROR_H
 
 # include "libft.h"
-# include "stdbool.h"
+# include <string.h>
+# include <errno.h>
 
-typedef struct s_token
-{
-	char	*path;
-	char	**args;
-}	t_token;
-
-void	free_token(void	*token_void);
-
-char	**get_args(char *arg);
-
-int		get_path(t_token *token, char **paths);
-
-t_list	*get_tokens(char **argv, char **envp, bool is_here_doc);
+void	print_error(char *command, char *context, char *error);
+char	*get_name(t_list *token);
+char	*get_error(void);
 
 #endif

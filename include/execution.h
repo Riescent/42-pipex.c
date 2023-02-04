@@ -1,33 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tokens.h                                           :+:      :+:    :+:   */
+/*   execution.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vfries <vfries@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/02 15:52:41 by vfries            #+#    #+#             */
-/*   Updated: 2023/02/04 13:39:32 by vfries           ###   ########lyon.fr   */
+/*   Created: 2023/02/04 14:51:45 by vfries            #+#    #+#             */
+/*   Updated: 2023/02/04 14:52:01 by vfries           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TOKENS_H
-# define TOKENS_H
+#ifndef EXECUTION_H
+# define EXECUTION_H
 
-# include "libft.h"
-# include "stdbool.h"
-
-typedef struct s_token
-{
-	char	*path;
-	char	**args;
-}	t_token;
-
-void	free_token(void	*token_void);
-
-char	**get_args(char *arg);
-
-int		get_path(t_token *token, char **paths);
-
-t_list	*get_tokens(char **argv, char **envp, bool is_here_doc);
+int	execute_commands(t_list *tokens, char *out_file, char **envp,
+		bool is_append);
 
 #endif

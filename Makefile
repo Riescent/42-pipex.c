@@ -4,11 +4,16 @@ NAME			=	pipex
 SRC_PATH		=	src/
 
 SRC				=\
+	error/error.c	\
+\
+	execution/execute_commands.c	\
+\
 	tokens/free_token.c	\
 	tokens/get_args.c	\
 	tokens/get_path.c	\
 	tokens/get_tokens.c	\
 \
+	dup_input_output.c	\
 	main.c
 
 

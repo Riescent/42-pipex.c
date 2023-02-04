@@ -6,7 +6,7 @@
 /*   By: vfries <vfries@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 15:52:00 by vfries            #+#    #+#             */
-/*   Updated: 2023/02/04 13:03:22 by vfries           ###   ########lyon.fr   */
+/*   Updated: 2023/02/04 13:39:16 by vfries           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int		get_paths(char ***paths, char **envp);
 static int		add_token(t_list **tokens, char *command, char **paths);
 static t_token	*init_token(char *command, char **paths);
 
-t_list	*get_tokens(char **argv, char **envp)
+t_list	*get_tokens(char **argv, char **envp, bool is_here_doc)
 {
 	t_list	*tokens;
 	int		i;
@@ -26,7 +26,10 @@ t_list	*get_tokens(char **argv, char **envp)
 	if (get_paths(&paths, envp))
 		return (NULL);
 	tokens = NULL;
-	i = 2;
+	if (is_here_doc)
+		i = 3;
+	else
+		i = 2;
 	while (argv[i + 1] != NULL)
 	{
 		if (add_token(&tokens, argv[i], paths))

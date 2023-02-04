@@ -1,33 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tokens.h                                           :+:      :+:    :+:   */
+/*   dup_input_output.h                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vfries <vfries@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/02 15:52:41 by vfries            #+#    #+#             */
-/*   Updated: 2023/02/04 13:39:32 by vfries           ###   ########lyon.fr   */
+/*   Created: 2023/02/04 14:48:12 by vfries            #+#    #+#             */
+/*   Updated: 2023/02/04 14:48:51 by vfries           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TOKENS_H
-# define TOKENS_H
+#ifndef DUP_INPUT_OUTPUT_H
+# define DUP_INPUT_OUTPUT_H
 
-# include "libft.h"
-# include "stdbool.h"
-
-typedef struct s_token
-{
-	char	*path;
-	char	**args;
-}	t_token;
-
-void	free_token(void	*token_void);
-
-char	**get_args(char *arg);
-
-int		get_path(t_token *token, char **paths);
-
-t_list	*get_tokens(char **argv, char **envp, bool is_here_doc);
+int	dup_output(char *out_file, bool is_append);
+int	dup_input(bool is_here_doc, char **argv);
 
 #endif
