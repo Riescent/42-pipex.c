@@ -6,7 +6,7 @@
 /*   By: vfries <vfries@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 13:57:01 by vfries            #+#    #+#             */
-/*   Updated: 2023/02/04 15:08:58 by vfries           ###   ########lyon.fr   */
+/*   Updated: 2023/02/04 15:26:30 by vfries           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 
 static int	get_here_doc(char *limiter);
 static char	*get_input(void);
+static int	dup_empty_stdin(void);
 
 int	dup_output(char *out_file, bool is_append)
 {
@@ -47,14 +48,13 @@ int	dup_input(bool is_here_doc, char **argv)
 	if (fd == -1 && is_here_doc)
 	{
 		print_error(NULL, "here_doc failed", get_error());
-		return (1);
+		return (dup_empty_stdin());
 	}
-	else if (fd == -1)
+	if (fd == -1)
 	{
 		print_error(argv[1], NULL, get_error());
-		return (1);
+		return (dup_empty_stdin());
 	}
-	close(STDIN_FILENO);
 	dup2(fd, STDIN_FILENO);
 	close(fd);
 	return (0);
@@ -89,4 +89,19 @@ static char	*get_input(void)
 {
 	ft_printf("> ");
 	return (get_next_line(STDIN_FILENO));
+}
+
+static int	dup_empty_stdin(void)
+{
+	int	pipe_fd[2];
+
+	if (pipe(pipe_fd) == -1)
+	{
+		print_error("dup_empty_stdin()", "pipe() failed", get_error());
+		return (2);
+	}
+	dup2(pipe_fd[0], STDIN_FILENO);
+	close(pipe_fd[0]);
+	close(pipe_fd[1]);
+	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: vfries <vfries@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 15:47:32 by vfries            #+#    #+#             */
-/*   Updated: 2023/02/04 15:09:19 by vfries           ###   ########lyon.fr   */
+/*   Updated: 2023/02/04 15:27:05 by vfries           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,19 +21,24 @@ int	main(int argc, char **argv, char **envp)
 {
 	t_list	*tokens;
 	int		exit_code;
+	int		dup_input_ret;
 	bool	is_here_doc;
 
 	if (check_input(argc, argv, &is_here_doc))
-		return (1);
+		return (-1);
 	tokens = get_tokens(argv, envp, is_here_doc);
 	if (tokens == NULL)
 	{
 		print_error(NULL, "Failed to malloc tokens", get_error());
-		return (2);
+		return (-1);
 	}
-	if (dup_input(is_here_doc, argv))
+	dup_input_ret = dup_input(is_here_doc, argv);
+	if (dup_input_ret == 1)
 		ft_lst_get_next_free_current(&tokens, &free_token);
-	exit_code = execute_commands(tokens, argv[argc - 1], envp, is_here_doc);
+	if (dup_input_ret != 2)
+		exit_code = execute_commands(tokens, argv[argc - 1], envp, is_here_doc);
+	else
+		exit_code = -1;
 	ft_lstclear(&tokens, &free_token);
 	return (exit_code);
 }
