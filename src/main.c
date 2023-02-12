@@ -16,21 +16,19 @@
 #include "execution.h"
 
 static int	check_input(int argc, char **argv, bool *is_here_doc);
-
-int	main(int argc, char **argv, char **envp)
-{
+int	main(int argc, char **argv, char **envp) {
 	t_list	*tokens;
 	int		exit_code;
 	int		dup_input_ret;
 	bool	is_here_doc;
 
 	if (check_input(argc, argv, &is_here_doc))
-		return (-1);
+		return (0);
 	tokens = get_tokens(argv, envp, is_here_doc);
 	if (tokens == NULL)
 	{
 		print_error(NULL, "Failed to malloc tokens", get_error());
-		return (-1);
+		return (1);
 	}
 	dup_input_ret = dup_input(is_here_doc, argv);
 	if (dup_input_ret == 1)
@@ -38,7 +36,7 @@ int	main(int argc, char **argv, char **envp)
 	if (dup_input_ret != 2)
 		exit_code = execute_commands(tokens, argv[argc - 1], envp, is_here_doc);
 	else
-		exit_code = -1;
+		exit_code = 2;
 	ft_lstclear(&tokens, &free_token);
 	return (exit_code);
 }
@@ -51,15 +49,16 @@ static int	check_input(int argc, char **argv, bool *is_here_doc)
 		*is_here_doc = ft_strcmp(argv[1], "HERE_DOC") == 0;
 	if (*is_here_doc && argc < 6)
 	{
-		ft_printf("Need 5 arguments\n");
-		ft_printf("./pipex HERE_DOC LIMITER CMD1 CMD2 OUT_FILE\n");
-		ft_printf("<< LIMITER CMD1 | CMD2 > OUT_FILE>\n");
+		ft_putstr_fd("Need 5 arguments\n", STDERR_FILENO);
+		ft_putstr_fd("./pipex HERE_DOC LIMITER CMD1 CMD2 OUT_FILE\n", STDERR_FILENO);
+		ft_putstr_fd("<< LIMITER CMD1 | CMD2 > OUT_FILE>\n", STDERR_FILENO);
 		return (1);
 	}
 	else if (argc < 5)
 	{
-		ft_printf("Need 4 arguments\n./pipex IN_FILE CMD1 CMD2 OUT_FILE\n");
-		ft_printf("< IN_FILE CMD1 | CMD2 > OUT_FILE>\n");
+		ft_putstr_fd("Need 4 arguments\n./pipex IN_FILE CMD1 CMD2 OUT_FILE\n",
+			STDERR_FILENO);
+		ft_putstr_fd("< IN_FILE CMD1 | CMD2 > OUT_FILE>\n", STDERR_FILENO);
 		return (1);
 	}
 	return (0);
