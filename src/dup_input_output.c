@@ -6,7 +6,7 @@
 /*   By: vfries <vfries@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 13:57:01 by vfries            #+#    #+#             */
-/*   Updated: 2023/02/04 15:26:30 by vfries           ###   ########lyon.fr   */
+/*   Updated: 2023/02/13 18:56:02 by vfries           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ int	dup_output(char *out_file, bool is_append)
 	int	fd;
 
 	if (is_append)
-		fd = open(out_file, O_CREAT | O_WRONLY | O_APPEND, S_IRWXU);
+		fd = open(out_file, O_CREAT | O_WRONLY | O_APPEND, 0644);
 	else
-		fd = open(out_file, O_CREAT | O_WRONLY | O_TRUNC, S_IRWXU);
+		fd = open(out_file, O_CREAT | O_WRONLY | O_TRUNC, 0644);
 	if (fd == -1)
 	{
 		print_error(out_file, NULL, get_error());
