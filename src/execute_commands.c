@@ -6,7 +6,7 @@
 /*   By: vfries <vfries@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 13:14:48 by vfries            #+#    #+#             */
-/*   Updated: 2023/02/13 19:07:00 by vfries           ###   ########lyon.fr   */
+/*   Updated: 2023/02/13 23:04:19 by vfries           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,21 +121,7 @@ static void	run_command(t_tokens tokens, char **envp)
 	const t_token	*command = tokens.current_tokens->content;
 
 	execve(command->path, command->args, envp);
-	if (ft_strrchr(command->args[0], '/') == NULL)
-	{
-		print_error(command->args[0], NULL, "command not found");
-		exit_code = 127;
-	}
-	else if (access(command->path, X_OK))
-	{
-		print_error(command->path, NULL, get_error());
-		exit_code = 126;
-	}
-	else
-	{
-		print_error(command->path, NULL, get_error());
-		exit_code = -1;
-	}
+	exit_code = execution_error(command);
 	ft_lstclear(&tokens.all_tokens, &free_token);
 	exit(exit_code);
 }

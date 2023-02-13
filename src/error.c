@@ -6,11 +6,11 @@
 /*   By: vfries <vfries@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 17:01:00 by tdameros          #+#    #+#             */
-/*   Updated: 2023/02/04 15:07:38 by vfries           ###   ########lyon.fr   */
+/*   Updated: 2023/02/13 23:04:35 by vfries           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "tokens.h"
 #include <string.h>
 #include <errno.h>
 
@@ -35,4 +35,28 @@ void	print_error(char *command, char *context, char *error)
 char	*get_error(void)
 {
 	return (strerror(errno));
+}
+
+int	execution_error(const t_token *command)
+{
+	if (command->args[0] == NULL)
+	{
+		print_error(NULL, NULL, "permission denied:");
+		return (127);
+	}
+	else if (ft_strrchr(command->args[0], '/') == NULL)
+	{
+		print_error(command->args[0], NULL, "command not found");
+		return (127);
+	}
+	else if (access(command->path, X_OK))
+	{
+		print_error(command->path, NULL, get_error());
+		return (126);
+	}
+	else
+	{
+		print_error(command->path, NULL, get_error());
+		return (-1);
+	}
 }
