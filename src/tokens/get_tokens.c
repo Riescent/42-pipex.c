@@ -6,7 +6,7 @@
 /*   By: vfries <vfries@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 15:52:00 by vfries            #+#    #+#             */
-/*   Updated: 2023/02/04 15:08:37 by vfries           ###   ########lyon.fr   */
+/*   Updated: 2023/02/13 00:44:25 by vfries           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ static int	add_token(t_list **tokens, char *command, char **paths)
 	new_node = ft_lstnew(new_token);
 	if (new_node == NULL || new_token == NULL)
 	{
-		free(new_token);
+		free_token(new_token);
 		free(new_node);
 		return (1);
 	}

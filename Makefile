@@ -4,16 +4,14 @@ NAME			=	pipex
 SRC_PATH		=	src/
 
 SRC				=\
-	error/error.c	\
-\
-	execution/execute_commands.c	\
-\
 	tokens/free_token.c	\
 	tokens/get_args.c	\
 	tokens/get_path.c	\
 	tokens/get_tokens.c	\
 \
 	dup_input_output.c	\
+	error.c				\
+	execute_commands.c	\
 	main.c
 
 
@@ -27,7 +25,7 @@ DIR_BUILD		=	.build/
 OBJS			=	$(patsubst %.c, $(DIR_BUILD)%.o, $(SRC))
 DEPS			=	$(patsubst %.c, $(DIR_BUILD)%.d, $(SRC))
 DEPS_FLAGS		=	-MMD -MP
-CFLAGS			=	-Wall -Wextra -Werror
+CFLAGS			=	-Wall -Wextra -Werror -g3
 RM				=	rm -rf
 AR				=	ar rcs
 
