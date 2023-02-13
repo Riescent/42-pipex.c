@@ -189,7 +189,7 @@ OBJS_TEST =		${addprefix ${TEST_OBJS_DIR},${SRCS_TEST:.c=.o}}
 OBJS_TEST_DEBUG =	${addprefix ${TEST_OBJS_DIR},${SRCS_TEST:.c=_debug.o}}
 
 
-FLAGS_NO_O3 =	-Wall -Wextra -Werror -g3
+FLAGS_NO_O3 =	-Wall -Wextra -Werror
 
 FLAGS =			${FLAGS_NO_O3}
 
