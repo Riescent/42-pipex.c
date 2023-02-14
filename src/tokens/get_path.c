@@ -6,7 +6,7 @@
 /*   By: vfries <vfries@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 12:57:18 by vfries            #+#    #+#             */
-/*   Updated: 2023/02/04 15:08:27 by vfries           ###   ########lyon.fr   */
+/*   Updated: 2023/02/14 00:55:49 by vfries           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,14 @@ static int	get_absolute_path(t_token *token, char **paths);
 
 int	get_path(t_token *token, char **paths)
 {
-	if (paths == NULL)
+	if (paths == NULL || token->args[0] == NULL || ft_strchr(token->args[0],
+			'/') != NULL)
 	{
+		if (token->args[0] == NULL)
+		{
+			token->path = NULL;
+			return (0);
+		}
 		token->path = ft_strdup(token->args[0]);
 		return (token->path == NULL);
 	}

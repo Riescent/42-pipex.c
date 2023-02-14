@@ -6,7 +6,7 @@
 /*   By: vfries <vfries@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 17:01:00 by tdameros          #+#    #+#             */
-/*   Updated: 2023/02/13 23:04:35 by vfries           ###   ########lyon.fr   */
+/*   Updated: 2023/02/14 01:37:18 by vfries           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	execution_error(const t_token *command)
 		print_error(NULL, NULL, "permission denied:");
 		return (127);
 	}
-	else if (ft_strrchr(command->args[0], '/') == NULL)
+	else if (ft_strchr(command->args[0], '/') == NULL)
 	{
 		print_error(command->args[0], NULL, "command not found");
 		return (127);

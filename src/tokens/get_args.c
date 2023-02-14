@@ -6,7 +6,7 @@
 /*   By: vfries <vfries@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 01:41:37 by vfries            #+#    #+#             */
-/*   Updated: 2023/02/04 15:08:16 by vfries           ###   ########lyon.fr   */
+/*   Updated: 2023/02/14 01:07:56 by vfries           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ static int	get_word_size(char *arg)
 			ft_reverse_bool(&is_in_simple_quote);
 		else if (arg[size] == ' '
 			&& is_in_double_quote == false && is_in_simple_quote == false)
-			break ;
+			return (size);
 		size++;
 	}
 	return (size);
