@@ -6,7 +6,7 @@
 /*   By: vfries <vfries@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 15:52:00 by vfries            #+#    #+#             */
-/*   Updated: 2023/02/13 00:44:25 by vfries           ###   ########.fr       */
+/*   Updated: 2023/02/19 12:33:33 by vfries           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static int	get_paths(char ***paths, char **envp)
 		*paths = NULL;
 		return (0);
 	}
-	*paths = ft_split(envp[i], ':');
+	*paths = ft_split(envp[i] + 5, ':');
 	if (*paths == NULL)
 		return (1);
 	return (0);
